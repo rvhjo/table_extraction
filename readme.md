@@ -185,11 +185,3 @@ print("Key loaded?", api_key is not None)
 * **Do not** hard-code API keys in source files.
 * If you previously pushed a key, revoke it immediately and rotate credentials.
 * Consider using `.gitignore`, `.env`, or a secrets manager.
-
----
-
-## Troubleshooting
-
-* **`pdf2image` errors**: ensure Poppler is installed and on PATH.
-* **LLM timeouts/format errors**: try smaller PDFs or fewer pages; validate the returned JSON.
-* **Missing Ns**: use **Load detected Ns** then edit, or supply a manual JSON override.
