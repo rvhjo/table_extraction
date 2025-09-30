@@ -80,23 +80,69 @@ pillow
 
 ---
 
+
 ## Environment Variables
 
-Set before running:
+You need to provide your OpenAI API key so the app can call the API.
 
-```bash
-export OPENAI_API_KEY="your_api_key"
-export DEPLOYMENT_NAME="gpt-4o"   # or your Azure/OpenAI deployment name
-```
+### Option 1: Temporary (per session)
 
-PowerShell:
+Run before starting the app:
+**PowerShell (Windows)**
 
 ```powershell
 $env:OPENAI_API_KEY="your_api_key"
 $env:DEPLOYMENT_NAME="gpt-4o"
+python app.py
 ```
 
-> **Security tip:** Never commit secrets. Use a `.env` or your CI/hosting secret manager.
+**macOS/Linux (bash/zsh)**
+
+```bash
+export OPENAI_API_KEY="your_api_key"
+export DEPLOYMENT_NAME="gpt-4o"
+python app.py
+```
+
+### Option 2: Permanent (system environment variable)
+
+Add the variables in your OS environment settings:
+
+* Name: `OPENAI_API_KEY` → Value: your API key
+* Name: `DEPLOYMENT_NAME` → Value: `gpt-4o`
+
+Then restart PowerShell/terminal.
+
+### Option 3: Project-level `.env` file (recommended for Jupyter/teams)
+
+Create a `.env` file in the project root:
+
+```
+OPENAI_API_KEY=your_api_key
+DEPLOYMENT_NAME=gpt-4o
+```
+
+Install **python-dotenv** if not already:
+
+```bash
+pip install python-dotenv
+```
+
+Then load it in your Notebook or script:
+
+```python
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # reads the .env file
+api_key = os.getenv("OPENAI_API_KEY")
+deployment = os.getenv("DEPLOYMENT_NAME")
+print("Key loaded?", api_key is not None)
+```
+
+⚠️ Make sure `.env` is in your `.gitignore` so your key is not exposed if you push to GitHub.
+
+
 
 
 ## How to Use (UI)
