@@ -1,7 +1,3 @@
-Got it! Here’s the English README version.
-
----
-
 # PDF Table Extraction & Statistical Analysis (Gradio App)
 
 An interactive **Python + Gradio** app that:
